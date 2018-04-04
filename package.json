@@ -38,6 +38,7 @@
     "cheerio": "0.22.0",
     "colors": "1.1.2",
     "compression": "1.6.1",
+    "consola": "^1.2.0",
     "cross-env": "1.0.7",
     "css-loader": "0.23.1",
     "enzyme": "2.2.0",
