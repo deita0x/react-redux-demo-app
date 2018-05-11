@@ -3,7 +3,7 @@ import TextInput from '../commons/TextInput';
 import SelectInput from '../commons/SelectInput';
 
 const CourseForm = (props) => {
-  const { course, allAuthors, onSave, onChange, loading, errors } = props;
+  const { course, allAuthors, onSave, onChange, saving, errors } = props;
 
   return (
     <form>
@@ -43,8 +43,8 @@ const CourseForm = (props) => {
 
       <input
         type="submit"
-        disabled={loading}
-        value={loading ? 'Saving...' : 'Save'}
+        disabled={saving}
+        value={saving ? 'Saving...' : 'Save'}
         className="btn btn-primary"
         onClick={onSave}
       />
@@ -57,7 +57,7 @@ CourseForm.propTypes = {
   allAuthors: PropTypes.array.isRequired,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
+  saving: PropTypes.bool,
   errors: PropTypes.object
 };
 
