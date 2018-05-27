@@ -5,7 +5,10 @@ import * as courseActions from '../../actions/courseActions';
 import CourseForm from './CourseForm';
 import toastr from 'toastr';
 
-class ManageCoursePage extends React.Component {
+// login placed in selectors
+import { getAuthorsFormatted } from '../../selectors/manageCoursePageSelectors';
+
+export class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -34,8 +37,25 @@ class ManageCoursePage extends React.Component {
     return this.setState({ course });
   }
 
+  formIsInvalid() {
+    let formIsInvalid = false;
+    let errors = {};
+
+    if (this.state.course.title.length < 5) {
+      errors.title = 'Title must be at least 5 charcters.';
+      formIsInvalid = true;
+    }
+
+    this.setState({ errors: errors });
+
+    return formIsInvalid;
+  }
+
   saveCourse(event) {
     event.preventDefault();
+
+    if (this.formIsInvalid()) { return; }
+
     this.setState({ saving: true });
     this.props.actions
       .saveCourse(this.state.course)
@@ -93,12 +113,8 @@ function mapStateToProps(state, ownProps) {
   } else {
     course = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
   }
-  
-  const authorsFormatted = state.authors.map(
-    author => ({ value: author.id, text: author.firstName + ' ' + author.lastName })
-  );
 
-  return { course: course, authors: authorsFormatted };
+  return { course: course, authors: getAuthorsFormatted(state.authors) };
 }
 
 function mapDispatchToProps(dispatch) {
