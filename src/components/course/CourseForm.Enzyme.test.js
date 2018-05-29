@@ -6,10 +6,11 @@ import CourseForm from './CourseForm';
 function setup(saving = true) {
   let props = {
     course: {},
+    allAuthors: [],
     saving: saving,
     errors: {},
     onSave: () => {},
-    onchange: () => {}
+    onChange: () => {}
   };
 
   return shallow(<CourseForm {...props} />);
