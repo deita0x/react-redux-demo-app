@@ -1,7 +1,7 @@
 import expect from 'expect';
 import { getAuthorsFormatted } from './manageCoursePageSelectors';
 
-describe('Manage course page Selectors', () => {
+describe('ManageCoursePage selectors', () => {
   describe('getAuthorsFormatted', () => {
     it('should return data formatted', () => {
       const authors = [

@@ -13,9 +13,9 @@ describe('ManageCoursePage', () => {
     const wrapper = mount(<ManageCoursePage {...props} />);
     const saveButton = wrapper.find('input[type="submit"]');
 
-    expect(saveButton.length).toBe(1);
     saveButton.simulate('click');
 
+    expect(saveButton.length).toBe(1);
     expect(wrapper.state().errors.title).toBe('Title must be at least 5 charcters.');
   });
 });
